@@ -1,0 +1,49 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Song",
+            "request": "launch",
+            "mainClass": "student.Song",
+            "projectName": "Part01_bd420b2b"
+        },
+        {
+            "type": "java",
+            "name": "SongCollection",
+            "request": "launch",
+            "mainClass": "student.SongCollection",
+            "projectName": "Part01_bd420b2b",
+            "args": "../allSongs.txt"
+        },
+        {
+            "type": "java",
+            "name": "GUI",
+            "request": "launch",
+            "mainClass": "songSearch.SongSearchGUI",
+            "args": "../allSongs.txt"
+        },
+        {
+            "type": "java",
+            "name": "SearchByArtist",
+            "request": "launch",
+            "mainClass": "student.SearchByArtistPrefix",
+            "args": "../allSongs.txt a be aer beat beatles"
+        },
+        {
+            "type": "java",
+            "name": "RALTester",
+            "request": "launch",
+            "mainClass": "RALtester.RALtester"
+        }
+    ]
+}

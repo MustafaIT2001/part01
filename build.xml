@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="part01" default="jar" basedir=".">
+
+  <!-- Set properties -->
+  <property name="src.dir" value="src"/>
+  <property name="build.dir" value="build"/>
+  <property name="dist.dir" value="dist"/>
+  <property name="lib.dir" value="lib"/>
+  <property name="jar.name" value="part01.jar"/>
+
+  <!-- Clean task -->
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+    <delete dir="${dist.dir}"/>
+  </target>
+
+  <!-- Compile task -->
+  <target name="compile" depends="clean">
+    <mkdir dir="${build.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+      <classpath>
+        <path location="${lib.dir}/*"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <!-- Package task (create JAR) -->
+  <target name="jar" depends="compile">
+    <mkdir dir="${dist.dir}"/>
+    <jar destfile="${dist.dir}/${jar.name}" basedir="${build.dir}">
+      <manifest>
+        <attribute name="Main-Class" value="com.part01.Main"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <!-- Run Tests task -->
+  <target name="test" depends="compile">
+    <mkdir dir="${build.dir}/test-classes"/>
+    <javac srcdir="${src.dir}/test" destdir="${build.dir}/test-classes" includeantruntime="false">
+      <classpath>
+        <path location="${lib.dir}/*"/>
+      </classpath>
+    </javac>
+    <junit>
+      <classpath>
+        <path location="${build.dir}/test-classes"/>
+        <path location="${lib.dir}/*"/>
+      </classpath>
+      <test name="com.part01.TestClass"/>
+    </junit>
+  </target>
+
+</project>
