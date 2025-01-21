@@ -1,28 +1,40 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
+            "name": "Song",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "student.Song",
+            "projectName": "part01_a8db5b91"
+        },
+        {
+            "type": "java",
+            "name": "Song",
+            "request": "launch",
+            "mainClass": "Song",
+            "projectName": "part01"
         },
         {
             "type": "java",
             "name": "Song",
             "request": "launch",
             "mainClass": "student.Song",
-            "projectName": "Part01_bd420b2b"
+            "projectName": "Part01"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}",
+            "projectName": "Part01"
         },
         {
             "type": "java",
             "name": "SongCollection",
             "request": "launch",
             "mainClass": "student.SongCollection",
-            "projectName": "Part01_bd420b2b",
+            "projectName": "Part01",
             "args": "../allSongs.txt"
         },
         {

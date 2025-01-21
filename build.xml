@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project name="part01" default="jar" basedir=".">
-
+  
   <!-- Set properties -->
   <property name="src.dir" value="src"/>
   <property name="build.dir" value="build"/>
   <property name="dist.dir" value="dist"/>
   <property name="lib.dir" value="lib"/>
-  <property name="jar.name" value="part01.jar"/>
+  <property name="jar.name" value="Song.jar"/>
 
   <!-- Clean task -->
   <target name="clean">
@@ -17,9 +16,9 @@
   <!-- Compile task -->
   <target name="compile" depends="clean">
     <mkdir dir="${build.dir}"/>
-    <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+    <javac srcdir="${src.dir}/student" destdir="${build.dir}" includeantruntime="false">
       <classpath>
-        <path location="${lib.dir}/*"/>
+        <path location="${src.dir}/student"/>
       </classpath>
     </javac>
   </target>
@@ -29,7 +28,7 @@
     <mkdir dir="${dist.dir}"/>
     <jar destfile="${dist.dir}/${jar.name}" basedir="${build.dir}">
       <manifest>
-        <attribute name="Main-Class" value="com.part01.Main"/>
+        <attribute name="Main-Class" value="student.Song"/>
       </manifest>
     </jar>
   </target>
@@ -39,15 +38,15 @@
     <mkdir dir="${build.dir}/test-classes"/>
     <javac srcdir="${src.dir}/test" destdir="${build.dir}/test-classes" includeantruntime="false">
       <classpath>
-        <path location="${lib.dir}/*"/>
+        <path location="${src.dir}/student"/>
       </classpath>
     </javac>
     <junit>
       <classpath>
         <path location="${build.dir}/test-classes"/>
-        <path location="${lib.dir}/*"/>
+        <path location="${src.dir}/student"/>
       </classpath>
-      <test name="com.part01.TestClass"/>
+      <test name="student.TestClass"/>
     </junit>
   </target>
 
