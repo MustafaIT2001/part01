@@ -12,6 +12,8 @@
  package student;
 
 import java.util.stream.Stream;
+import java.io.*;
+import java.util.*;
 
 /**
  * SongCollection.java 
@@ -20,7 +22,7 @@ import java.util.stream.Stream;
  */
 public class SongCollection {
 
-    private Song[] songs;
+    private Song[] songs; //The array of Song objects
 
     /**
      * Note: in any other language, reading input inside a class is simply not
@@ -34,6 +36,68 @@ public class SongCollection {
      * must be set in the Project Properties as an argument.
      */
     public SongCollection(String filename) {
+        try{
+            //Array list that holds song objects while reading the file JP
+            ArrayList<Song> songList = new ArrayList<>(); 
+            
+            //BufferedReader created to open the file up for reading JP
+            BufferedReader reader = new BufferedReader(new FileReader(filename)); 
+            
+            // Variables that will temporarily store song data JP
+            String line;// Holds the current line being read from the file
+            String artist = null, title = null; // initilze variables to null JP
+            StringBuilder lyricsBuilder = new StringBuilder(); //StringBuilder called lyricsBuilder that will collect song lyrics JP
+            
+            //BufferReader will read the line in the file as long as there is something to read JP
+            while ((line = reader.readLine()) != null){
+                //Checks to see if line starts with ARTIST JP
+                if (line.startsWith("ARTIST=")){
+                    //Checks to see if we are already processing a song JP
+                    if (artist != null && title != null && lyricsBuilder.length() > 0){
+                        //Adds the song to the array list JP
+                        songList.add(new Song(artist, title, lyricsBuilder.toString()));
+                    }
+                    //Extracts the Artist's name by removine the "ARTIST=" from the string JP
+                    artist = line.substring(7).trim();
+                    //Resets the title
+                    title = null; 
+                    //Resets the lyrics
+                    lyricsBuilder.setLength(0);
+                
+                // Checks to see if the line starts with "TITLE=" JP
+                }else if (line.startsWith("TITLE=")){
+                    //Extracts the title name by trimming off "TITLE=" JP
+                    title = line.substring(6).trim();
+                // Checks to see if the line starts with "LYRICS=" JP
+                }else if (line.startsWith("LYRICS=")){
+                    //Starts reading the lyrics trimming out "LYRICS=" JP
+                    lyricsBuilder.append(line.substring(7).trim()).append("\n");
+                }else{
+                    //Appends the lyrics JP
+                    lyricsBuilder.append(line).append("\n");
+                }
+                
+            }
+            
+            //Adds the last song if necessary
+            if (artist != null && title != null && lyricsBuilder.length() > 0){
+                songList.add(new Song(artist, title, lyricsBuilder.toString()));
+            }
+            
+            //Closed the file reader
+            reader.close();
+            
+            // Converts the ArrayList to a static array for sorting JP
+            songs = songList.toArray(new Song[0]);
+            Arrays.sort(songs);
+            
+            
+        // Catchs any errors to prevent crashing
+        }catch(IOException e){
+            System.err.println("Error reading file: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
 
 	// use a try catch block
         // read in the song file and build the songs array
@@ -65,8 +129,15 @@ public class SongCollection {
         }
 
         SongCollection sc = new SongCollection(args[0]);
+        
+        //Gets all the songs from the collection
+        Song[] list = sc.getAllSongs();
+        
+        //Prints out the amount of songs by outputting the list length JP
+        System.out.println("Total songs: " + list.length);
 
-        // todo: show song count
-        Stream.of(sc).limit(10).forEach(System.out::println);
+        //Prints out a title for the first 10 songs JP
+        System.out.println("First 10 songs (or fewer):");
+        Stream.of(list).limit(10).forEach(System.out::println);
     }
 }
