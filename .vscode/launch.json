@@ -3,9 +3,18 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SongCollection",
+            "request": "launch",
+            "mainClass": "student.SongCollection",
+            "args": "/home/dylan/School/Spring2025/DataStructures/CSCI290Projects/part01/allSongs.txt",
+            "projectName": "part01_6e52b429"
+        },
+        {
+            "type": "java",
             "name": "Song",
             "request": "launch",
             "mainClass": "student.Song",
+            "args": "/home/dylan/School/Spring2025/DataStructures/CSCI290Projects/part01/allSongs.txt",
             "projectName": "part01_a8db5b91"
         },
         {
