@@ -3,7 +3,7 @@
  ************************************************************************
  *                     Revision History (newest first)
  ************************************************************************
- * 
+ *
  * 8.2016 - Anne Applin - formatting and JavaDoc skeletons added   
  * 2015 -   Prof. Bob Boothe - Starting code and main for testing  
  ************************************************************************
@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 /**
  * SongCollection.java
  * Reads the specified data file and build an array of songs.
- * 
+ *
  * @author boothe
  */
 public class SongCollection {
@@ -48,7 +48,7 @@ public class SongCollection {
             String line;// Holds the current line being read from the file
             String artist = null, title = null; // initilze variables to null JP
             StringBuilder lyricsBuilder = new StringBuilder(); // StringBuilder called lyricsBuilder that will collect
-                                                               // song lyrics JP
+            // song lyrics JP
 
             // BufferReader will read the line in the file as long as there is something to
             // read JP
@@ -116,7 +116,7 @@ public class SongCollection {
 
     /**
      * this is used as the data source for building other data structures
-     * 
+     *
      * @return the songs array
      */
     public Song[] getAllSongs() {
@@ -125,7 +125,7 @@ public class SongCollection {
 
     /**
      * unit testing method
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
